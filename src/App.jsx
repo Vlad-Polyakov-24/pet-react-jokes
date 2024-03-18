@@ -7,13 +7,7 @@ const App = () => {
   const [jokes, setJokes] = useState([]);
   const [jokesLoading, setJokesLoading] = useState(false);
   const [error, setError] = useState(null);
-  let content = <p>Шутки не найдены!</p>;
-
-  // const fetchJokesHandler = () => {
-  //   fetch('https://official-joke-api.appspot.com/jokes/ten')
-  //     .then(response => response.json())
-  //     .then(data => setJokes(data));
-  // };
+  let content = <p>No jokes found!</p>;
 
   const fetchJokesHandler = useCallback(async () => {
     setJokesLoading(true);
@@ -62,7 +56,7 @@ const App = () => {
   }, [fetchJokesHandler]);
 
   if (jokes && jokes.length > 0) content = <JokeList jokes={jokes} />;
-  if (jokesLoading) content = <p>Идет загрузка шуток...</p>;
+  if (jokesLoading) content = <p>Loading jokes...</p>;
   if (error) content = <p>{error}</p>;
 
   return (
